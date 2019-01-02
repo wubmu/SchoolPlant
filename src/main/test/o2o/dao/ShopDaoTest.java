@@ -43,4 +43,13 @@ public class ShopDaoTest extends BaseTest {
         int i = dao.insertShop(shop);
 
     }
+
+    @Test
+    public void updateShop(){
+        Shop shop =  new Shop();
+        shop.setShopId(1L);
+        shop.setShopDesc("测试更新描述");
+        shop.setLastEditTime(new Date());
+        dao.updateShop(shop);
+    }
 }
