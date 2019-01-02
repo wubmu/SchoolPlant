@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<configuration  debug="false" scan="true" scanPeriod="60 seconds">
+    <!--定义参数常量-->
+    <!--TRACE<DEBUG<INFO<WARN<ERROR-->
+    <property name="log.level" value="debug"></property>
+    <property name="log.maxHistory" value="30"></property>
+    <property name="filePath" value="${catalina.base}/logs/webapps"></property>
+    <property name="log.pattern"
+    value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{55} -
+				%msg%n"
+    ></property>
+    <!--控制台设置-->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    <!--DEBUG-->
+    <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.filePath}/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件路径-->
+            <fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <OnMismatch>DENY</OnMismatch>
+        </filter>
+    </appender>
+
+    <logger></logger>
+</configuration>

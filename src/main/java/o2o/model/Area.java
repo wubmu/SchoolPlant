@@ -1,5 +1,7 @@
 package o2o.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
  * create : 2018-12-28 23:54
  * description
  */
+@Component
 public class Area {
     //ID
     private Integer areaId;
