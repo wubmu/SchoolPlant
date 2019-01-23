@@ -21,8 +21,10 @@ public class AreaDaoTest extends BaseTest {
 
     @Test
     public void testQueryArea(){
-        List<Area> areas = areaDao.queryArea();
-        assertEquals(2,areas.size());
+//        List<Area> areas = areaDao.queryArea();
+//        assertEquals(2,areas.size());
+        String basePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        System.out.println(basePath);
     }
 
 }

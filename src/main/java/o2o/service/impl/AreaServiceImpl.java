@@ -15,7 +15,7 @@ import java.util.List;
  * create : 2019-01-01 11:11
  * description
  */
-@Service
+@Service("areaService")
 public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaDao areaDao;

@@ -1,8 +1,6 @@
 package o2o.utils;
 
-import javafx.scene.shape.Path;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Position;
 import net.coobird.thumbnailator.geometry.Positions;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -12,7 +10,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +22,7 @@ public class ImageUtil {
     private static String basePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     private static final SimpleDateFormat  SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final Random r = new Random();
-    public static void generateThumbnail(CommonsMultipartFile thumbnail,String targetAddr){
+    public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr){
         String realFileName =getRandomFileName();
         String extension = getFileExtension(thumbnail);
         makeDirPath(targetAddr);
@@ -34,14 +31,16 @@ public class ImageUtil {
 
         File dest = new File(PathUtil.getImgBasePath()+relativeAddr);
         try {
-            Thumbnails.of(thumbnail.getInputStream())
-                    .size(200, 200).watermark(Positions.BOTTOM_RIGHT,
-                    ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
+            Thumbnails.of(thumbnail.getInputStream())//.watermark(Positions.BOTTOM_RIGHT,
+            //ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
+                    .size(200, 200)
                     .outputQuality(0.8f)
                     .toFile(dest);
         }catch (IOException e){
             e.printStackTrace();
         }
+        return relativeAddr;
+
     }
 
     /**

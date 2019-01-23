@@ -177,4 +177,29 @@ public class Shop {
     public void setParentCategory(ShopCategory parentCategory) {
         this.parentCategory = parentCategory;
     }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "shopId=" + shopId +
+                ", ownerId=" + ownerId +
+                ", shopCategoryId=" + shopCategoryId +
+                ", shopName='" + shopName + '\'' +
+                ", shopDesc='" + shopDesc + '\'' +
+                ", shopAddr='" + shopAddr + '\'' +
+                ", phone='" + phone + '\'' +
+                ", shopImg='" + shopImg + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", priority=" + priority +
+                ", createTime=" + createTime +
+                ", lastEditTime=" + lastEditTime +
+                ", enableStatus=" + enableStatus +
+                ", advice='" + advice + '\'' +
+                ", staffList=" + staffList +
+                ", area=" + area +
+                ", shopCategory=" + shopCategory +
+                ", parentCategory=" + parentCategory +
+                '}';
+    }
 }

@@ -1,14 +1,25 @@
-package o2o.dao;
+package o2o.service.impl;
 
+import o2o.dto.ShopExecution;
+import o2o.enums.ShopStateEnum;
 import o2o.model.Area;
 import o2o.model.PersonInfo;
 import o2o.model.Shop;
 import o2o.model.ShopCategory;
 import o2o.service.BaseTest;
+import o2o.service.ShopService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.security.provider.SHA;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
+import org.apache.http.entity.ContentType;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -17,14 +28,14 @@ import static org.junit.Assert.*;
  * Created with IntelliJ IDEA.
  *
  * @author : 吴亚斌
- * create : 2019-01-01 13:27
+ * create : 2019-01-09 15:46
  * description
  */
-public class ShopDaoTest extends BaseTest {
+public class ShopServiceImplTest extends BaseTest {
     @Autowired
-    private ShopDao dao;
+    private ShopService shopService;
     @Test
-    public void insertShop() {
+    public void addShop() {
         Shop shop   = new Shop();
         PersonInfo personInfo = new PersonInfo();
         Area area = new Area();
@@ -35,22 +46,14 @@ public class ShopDaoTest extends BaseTest {
         shopCategory.setShopCategoryId(1L);
         shop.setArea(area);
         shop.setParentCategory(shopCategory);
-        shop.setShopName("测试的店铺");
+        shop.setShopName("测试的店铺2");
         shop.setOwnerId(personInfo);
         shop.setCreateTime(new Date());
-        shop.setEnableStatus(1);
+        shop.setEnableStatus(ShopStateEnum.CHECK.getState());
         shop.setAdvice("审查中");
-        int i = dao.insertShop(shop);
+        File shopImg = new File("D:\\makeMonery\\20190108\\1.PNG");
 
-    }
 
-    @Test
-    public void updateShop(){
-        Shop shop =  new Shop();
-        shop.setShopId(1L);
-        shop.setShopDesc("测试更新描述");
-        shop.setLastEditTime(new Date());
-       int i= dao.updateShop(shop);
-       assertEquals(1, i);
+
     }
 }
